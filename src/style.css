@@ -1,0 +1,153 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+
+}
+
+body {
+    width: 90;
+    height: 90vh;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.header {
+    background: rgb(37, 100, 207);
+    height: 40px;
+    padding: 5px;
+    color: white;
+    padding-left: 20px;
+}
+
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.div1 {
+    flex: none;
+    min-width: 250px;
+    width: 15%;
+    height: 900px;
+    border-right: 1px solid rgb(241, 237, 237);
+}
+
+.div2 {
+    flex-grow: 1;
+    height: 500px;
+    border-right: 1px solid rgb(241, 237, 237);
+    border-left: 1px solid rgb(241, 237, 237);
+    transition: 300ms ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.div2 .tasks {
+    width: 100%;
+    height: 500px;
+    min-width: 250px;
+    transition: 300ms ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.div3 {
+    flex-grow: .5;
+    height: 500px;
+    border-left: 1px solid rgb(241, 237, 237);
+
+}
+
+.detailsTitle {
+    width: 20%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.hidden {
+    position: absolute;
+    display: none;
+}
+
+.taskInput {
+    background: white;
+    margin: 5px;
+    width: 95%;
+    height: 40px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.1));
+}
+
+
+.taskInput input {
+    border: none;
+    outline: none;
+    height: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.taskRow::before {
+    content: '○';
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.taskRow {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+    margin: 5px;
+    width: 95%;
+    height: 50px;
+    background: white;
+    display: flex;
+    align-items: center;
+    filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.1));
+}
+
+.taskRow:hover {
+        background: rgb(231, 227, 227);
+        cursor: pointer;
+}   
+
+.animate {
+    animation-duration: 300ms;
+    animation-name: appear;
+}
+
+#delete-warning {
+    top: 50%;
+    left: 50%;
+}
+
+
+#bold {
+    font-weight: bolder;
+}

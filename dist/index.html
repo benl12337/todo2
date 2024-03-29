@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../src/style.css">
+</head>
+
+<body>
+    <dialog id="task-form">
+        <form>
+            <input type="text">
+            <input type="text">
+            <input type="date">
+        </form>
+    </dialog>
+
+    <dialog id="delete-warning">
+        <div class="delete-warning"></div>
+        <button id="cancel-delete">Cancel</button>
+        <button id="delete-task">Delete</button>
+    </dialog>
+
+
+
+    <div class="header">
+        <h3>To Do</h3>
+    </div>
+    <div class="container">
+        <div class="div1">
+            <div class="my-day">My Day</div>
+        </div>
+        <div class="div2">
+            <div class="taskInput"><input type="text" maxlength="255">
+            </div>
+            <div class="tasks">
+            </div>
+        </div>
+        <div class="div3 hidden">
+            <div class="detailsTitle"></div>
+            <button id="deleteBtn">Delete Task</button>
+            <button id="closeBtn">Close details</button>
+        </div>
+    </div>
+</body>
+<script src="./main.js"></script>
+
+</html>
