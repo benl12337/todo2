@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <!-- DIALOGS -->
     <dialog id="task-form">
         <form>
             <input type="text">
@@ -24,25 +25,35 @@
     </dialog>
 
 
-
+    <!-- MAIN CONTENT-->
     <div class="header">
         <h3>To Do</h3>
     </div>
     <div class="container">
+
+        <!-- PROJECTS PANE -->
         <div class="div1">
-            <div class="my-day">My Day</div>
+            <div class="my-day">Main Project</div>
         </div>
+
+        <!-- TASKS PANE -->
         <div class="div2">
             <div class="taskInput"><input type="text" maxlength="255">
+            <div class="additionalInputs"></div>
             </div>
             <div class="tasks">
             </div>
         </div>
+
+        <!-- TASK DETAILS PANE-->
         <div class="div3 hidden">
             <div class="detailsTitle"></div>
+            <div class="detailsDescription"></div>
+            <!-- Task Pane Buttons-->
             <button id="deleteBtn">Delete Task</button>
             <button id="closeBtn">Close details</button>
         </div>
+
     </div>
 </body>
 <script src="./main.js"></script>

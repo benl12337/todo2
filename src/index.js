@@ -8,28 +8,36 @@ const deleteWarning = document.querySelector('#delete-warning');
 const cancelDelete = document.querySelector('#cancel-delete');
 const deleteTaskBtn = document.querySelector('#delete-task');
 const warningText = document.querySelector('.delete-warning');
+const additionalInputs = document.querySelector('.additionalInputs');
+import task from './task.js';
+import project from './project.js';
 
 
-const tasks = [];
+const projects = [];
+const mainProject = new project('main');
+let activeProject = mainProject;
+
+
+
 let activeTaskIndex = null;
 let taskIndex = 0;
 
-function task(name) {
-    index = null;
-    return {
-        name,
-        index,
-    };
-}
+taskInput.addEventListener('focus',()=>{
+    additionalInputs.classList.toggle('scaleUp');
+});
+taskInput.addEventListener('focusout',()=>{
+    additionalInputs.classList.toggle('scaleUp');
+});
 
 // render the task list
-function renderList(newBookAdded) {
+function renderList(project, newTaskAdded) {
     middleDiv.innerHTML = '';
-    for (let i = 0; i < tasks.length; i++) {
+    
+    for (let i = 0; i < project.tasks.length; i++) {
         const newDiv = document.createElement('div');
-        newDiv.textContent = tasks[i].name;
+        newDiv.textContent = project.tasks[i].name;
         newDiv.classList.add('taskRow');
-        newDiv.dataset.index = tasks[i].index;
+        newDiv.dataset.index = project.tasks[i].index;
         newDiv.addEventListener('click', (e)=>{
 
             // make the details pane visible & update the active task index
@@ -37,17 +45,15 @@ function renderList(newBookAdded) {
             activeTaskIndex = e.target.dataset.index;
             
             // change the displayed text in the details pane
-            detailsTitle.textContent = tasks[activeTaskIndex].name;
-            console.log(tasks[activeTaskIndex]);
+            detailsTitle.textContent = project.tasks[activeTaskIndex].name;
 
         })
-        if (newBookAdded && i == tasks.length - 1) {
+        if (newTaskAdded && i == project.tasks.length - 1) {
             newDiv.classList.add('animate');
         }
         
         // add the task to the middle div
         middleDiv.prepend(newDiv);
-
     }
 
     // empty the input bar
@@ -59,59 +65,54 @@ closeBtn.addEventListener('click', () => {
 })
 
 deleteBtn.addEventListener('click', ()=>{    
-    warningText.innerHTML = `<span id="bold">${tasks[activeTaskIndex].name}</span> will be permanently deleted.`;
+    warningText.innerHTML = `<span id="bold">${project.tasks[activeTaskIndex].name}</span> will be permanently deleted.`;
     deleteWarning.prepend(warningText);
     deleteWarning.showModal();
 });
 
+
 deleteTaskBtn.addEventListener('click', ()=>{
-    console.log('joji');
     deleteWarning.close();
     // delete the task at this specific index
-    tasks.splice(activeTaskIndex,1);
+    project.tasks.splice(activeTaskIndex,1);
 
     // reset the indexes
-    for (let i = 0; i < tasks.length; i++) {
-        tasks[i].index = i;
-        console.log(tasks[i].name, tasks[i].index);
+    for (let i = 0; i < activeProject.tasks.length; i++) {
+        project.tasks[i].index = i;
     }
     // reset the indexes of the task
-    renderList(false);
+    renderList(activeProject, false);
 
     // reset active project to first task, if no tasks then close pane
 
 });
 
+// close the modal dialog
 cancelDelete.addEventListener('click', ()=>{
     deleteWarning.close();
 });
 
-
-
-function addTask(task) {
+// add a task to the specified project
+function addTask(project, task) {
     // add task to array
-    tasks.push(task);
+    project.tasks.push(task);
     task.index = taskIndex++;
-    renderList(false);
+    renderList(activeProject, false);
 }
 
+// add a task to the current active project
 document.addEventListener('keypress', (e) => {
-
     if (e.key == 'Enter') {
-        addTask(new task(taskInput.value));
-        console.log(tasks);
+        addTask(activeProject, new task(taskInput.value));
         console.log("yay!");
-        renderList(true);
+        renderList(activeProject, true);
     }
 })
 
-
-
 const taskOne = new task('Clean room');
 const taskTwo = new task('Wash car');
-addTask(taskOne);
-addTask(taskTwo);
-
-renderList(false);
+addTask(activeProject, taskOne);
+addTask(activeProject, taskTwo);
+renderList(activeProject, false);
 
 
