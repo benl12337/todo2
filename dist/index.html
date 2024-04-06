@@ -39,7 +39,9 @@
         <!-- TASKS PANE -->
         <div class="div2">
             <div class="taskInput"><input type="text" maxlength="255">
-            <div class="additionalInputs"></div>
+                <div class="additionalInputs">
+                    <input type="date" id="dateInput">
+                </div>
             </div>
             <div class="tasks">
             </div>
@@ -49,6 +51,7 @@
         <div class="div3 hidden">
             <div class="detailsTitle"></div>
             <div class="detailsDescription"></div>
+            <div class="detailsDueDate"></div>
             <!-- Task Pane Buttons-->
             <button id="deleteBtn">Delete Task</button>
             <button id="closeBtn">Close details</button>
@@ -56,6 +59,6 @@
 
     </div>
 </body>
-<script src="./main.js"></script>
+<script src="./bundle.js"></script>
 
 </html>

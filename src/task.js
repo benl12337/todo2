@@ -1,7 +1,7 @@
-export default function task(name) {
-    let index = 0;
+export default function task(name, date) {
+    let index = null;
     let description = "";
-    let dueDate = new Date();
+    let dueDate = date == '' || date === null ? "None" : date;
 
     return {
         name,
