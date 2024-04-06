@@ -28,6 +28,8 @@ taskInput.addEventListener('focus', () => {
 // render the details div
 function updateDetails() {
     detailsTitle.textContent = activeProject.tasks[activeTaskIndex].name;
+
+
     detailsDate.textContent = activeProject.tasks[activeTaskIndex].dueDate;
 }
 
@@ -60,6 +62,7 @@ function renderList(project, newTaskAdded) {
     updateDetails();
     // empty the input bar
     taskInput.value = "";
+    dateInput.value = "";
 }
 
 closeBtn.addEventListener('click', () => {
@@ -106,7 +109,7 @@ function addTask(project, task) {
 
 // add a task to the current active project
 document.addEventListener('keypress', (e) => {
-    if (e.key == 'Enter' && document.activeElement === taskInput) {
+    if (e.key == 'Enter' && document.activeElement === taskInput || document.activeElement === dateInput) {
         const newTask = new task(taskInput.value, dateInput.value);
         console.log(activeProject.tasks);
         addTask(activeProject, newTask);

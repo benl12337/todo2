@@ -155,10 +155,19 @@ body {
 }
 
 #delete-warning {
-    top: 50%;
-    left: 50%;
+  top: 50%;
+  left: 50%;
 }
 
+#delete-warning button {
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+}
+
+dialog {
+    background: red;
+}
 
 #bold {
     font-weight: bolder;
