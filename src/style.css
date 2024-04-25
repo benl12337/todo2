@@ -23,7 +23,6 @@ body {
     }
 }
 
-
 .header {
     background: rgb(37, 100, 207);
     height: 40px;
@@ -78,10 +77,23 @@ body {
 }
 
 .detailsTitle {
-    width: 20%;
+    width: 100%;
+    font-size: 1rem;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    outline: none;
+    border: 0;
+    padding: 15px;
+    font-weight: bold;
+}
+
+.detailsTitle:hover {
+    background-color: rgb(245, 242, 242);
+}
+
+.detailsDueDate {
+    padding: 15px;
 }
 
 .hidden {

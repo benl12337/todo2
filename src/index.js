@@ -1,5 +1,6 @@
 import task from './task.js';
 import project from './project.js';
+import { format } from "date-fns";
 
 const middleDiv = document.querySelector('.div2 .tasks');
 const detailsDiv = document.querySelector('.div3');
@@ -27,10 +28,13 @@ taskInput.addEventListener('focus', () => {
 
 // render the details div
 function updateDetails() {
-    detailsTitle.textContent = activeProject.tasks[activeTaskIndex].name;
-
-
-    detailsDate.textContent = activeProject.tasks[activeTaskIndex].dueDate;
+    detailsTitle.value = activeProject.tasks[activeTaskIndex].name;
+    if (activeProject.tasks[activeTaskIndex].dueDate != "No due date") {
+        detailsDate.textContent = "Due " + format(new Date(activeProject.tasks[activeTaskIndex].dueDate), "EEE, dd MMM");
+    } else {
+        detailsDate.textContent = activeProject.tasks[activeTaskIndex].dueDate;
+    }
+    
 }
 
 // render the task list
@@ -115,6 +119,13 @@ document.addEventListener('keypress', (e) => {
         addTask(activeProject, newTask);
         activeTaskIndex = activeProject.tasks.length - 1;
         renderList(activeProject, true);
+        // if user is changing the name of a task
+    } else if (e.key == 'Enter' && document.activeElement === detailsTitle) {
+        // update the task name
+        activeProject.tasks[activeTaskIndex].name = detailsTitle.value;
+
+        // re-render the task list and details list
+        renderList(activeProject,false);
     }
 })
 
