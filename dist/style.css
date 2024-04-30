@@ -144,6 +144,10 @@ body {
     filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.1));
 }
 
+.taskInput::before {
+    content: '○';
+}
+
 .taskRow:hover {
     background: rgb(231, 227, 227);
     cursor: pointer;

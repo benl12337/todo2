@@ -35,12 +35,13 @@
 
         <!-- PROJECTS PANE -->
         <div class="div1">
-            <div class="my-day">Main Project</div>
+            <div class="projectsList"></div>
+            <input type="text" id="projectInput" class="projectRow" placeholder="Add Project">
         </div>
 
         <!-- TASKS PANE -->
         <div class="div2">
-            <div class="taskInput"><input type="text" maxlength="255">
+            <div class="taskInput"><div class="topRow"><p>+</p><input type="text" maxlength="255" id="taskInput"></div>
                 <div class="additionalInputs">
                     <input type="date" id="dateInput">
                 </div>
@@ -52,7 +53,9 @@
         <!-- TASK DETAILS PANE-->
         <div class="div3 hidden">
             <input class="detailsTitle" type="text">
-            <div class="detailsDescription"></div>
+            <div class="detailsDescription">
+                <textarea name="taskDescription" id="taskDescription"></textarea>
+            </div>
             <div class="detailsDueDate"></div>
             <!-- Task Pane Buttons-->
             <button id="deleteBtn">Delete Task</button>
