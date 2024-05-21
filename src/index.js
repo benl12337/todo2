@@ -59,8 +59,34 @@ function renderList(project, newTaskAdded) {
     middleDiv.innerHTML = '';
 
     for (let i = 0; i < project.tasks.length; i++) {
+        // create the task row element
         const newDiv = document.createElement('div');
-        newDiv.textContent = project.tasks[i].name;
+
+        const check = document.createElement('div');
+        check.classList.add('checkbox');
+
+        const name = document.createElement('p');
+        name.textContent = project.tasks[i].name;
+        if (project.tasks[i].completed) {
+            name.classList.name = 'completed-name';
+        }
+
+        newDiv.append(check);
+        newDiv.append(name);
+
+
+        check.addEventListener('click', () => {
+            check.classList.toggle('completed');
+            name.classList.toggle('completed-name');
+
+            // mark as completed
+            console.log(project.tasks[i].completed);
+            project.tasks[i].completed = project.tasks[i].completed == false ? true : false;
+            console.log(project.tasks[i].completed);
+            saveProjects(projects);
+
+        });
+
         newDiv.classList.add('taskRow');
         project.tasks[i].index = i;
         newDiv.dataset.index = i;
@@ -70,6 +96,7 @@ function renderList(project, newTaskAdded) {
             // make the details pane visible & update the active task index
             detailsDiv.classList.remove('hidden');
             activeTaskIndex = e.target.dataset.index;   // change the displayed text in the details pane
+            console.log("active task index", activeTaskIndex);
             topRowSymbol.textContent = '+';
             updateDetails();
         })
@@ -82,7 +109,7 @@ function renderList(project, newTaskAdded) {
     }
     // change the displayed text in the details pane
     updateDetails();
-    
+
     // empty the input bar
     taskInput.value = "";
     dateInput.value = "";
@@ -92,20 +119,21 @@ function renderList(project, newTaskAdded) {
 function renderProjectList() {
     projectsList.innerHTML = "";
 
+    const projectTitle = document.querySelector('#project-name h2');
+    projectTitle.textContent = projects[activeProjectIndex].name;
     // append all the projects on the side
-    for(let i = 0; i < projects.length; i++) {
-        console.log("iffhdjfhdjdf");
+    for (let i = 0; i < projects.length; i++) {
         const newProjectDiv = document.createElement('div');
-        newProjectDiv.dataset.index = i; 
+        newProjectDiv.dataset.index = i;
         newProjectDiv.textContent = projects[i].name;
-        
+
         if (activeProjectIndex == i) {
             newProjectDiv.classList.add('activeProject');
         } else {
             newProjectDiv.classList.add('projectRow');
         }
-        
-        newProjectDiv.addEventListener('click', (e)=>{
+
+        newProjectDiv.addEventListener('click', (e) => {
             activeProjectIndex = e.target.dataset.index;
             detailsDiv.classList.add('hidden');
             renderProjectList();
@@ -198,13 +226,13 @@ document.addEventListener('keypress', (e) => {
 // Check if there is existing storage
 if (localStorage.getItem("projects") !== null) {
     projects = getProjects();
-    
+
 } else {
 
     // create sample project and tasks
     const mainProject = new project('Main Project');
     projects.push(mainProject);
-    
+
 
     // Add sample tasks
     const taskOne = new task('Clean room', null);

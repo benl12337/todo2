@@ -8,7 +8,7 @@
 
 body {
     width: 90;
-    height: 90vh;
+    height: 100vh;
 }
 
 button:hover {
@@ -40,6 +40,19 @@ h3 {
     font-weight: lighter;
 }
 
+#project-name {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 95%;
+    text-align: left;
+}
+
+h2 {
+    font-weight: lighter;
+    color: rgb(37, 100, 207);
+    font-size: 1.25rem;
+}
+
 
 .container {
     width: 100%;
@@ -51,7 +64,7 @@ h3 {
     flex: none;
     min-width: 250px;
     width: 15%;
-    height: 900px;
+    height: 100vh;
     border-right: 1px solid rgb(241, 237, 237);
     filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.1));
     background: white;
@@ -61,7 +74,7 @@ h3 {
 .div2 {
     background: rgb(250, 249, 248);
     flex-grow: 1;
-    height: 500px;
+    height: 100vh;
     border-right: 1px solid rgb(241, 237, 237);
     border-left: 1px solid rgb(241, 237, 237);
     transition: 300ms ease-in-out;
@@ -83,7 +96,7 @@ h3 {
 
 .div3 {
     flex-grow: .1;
-    height: 500px;
+    height: 100vh;
     filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.1));
     padding: 15px;
     background: rgb(250, 249, 248);
@@ -109,6 +122,7 @@ h3 {
     border: 0;
     padding: 10px;
     font-weight: bold;
+    font-weight: lighter;
 }
 
 .detailsTitle:hover {
@@ -190,15 +204,24 @@ h3 {
     height: 40px;
 }
 
-.taskRow::before {
-    content: '○';
-    color: rgb(37, 100, 207);
-    font-size: 1.5rem;
-    padding-left: 5px;
-    padding-right: 5px;
+.checkbox {
+    width: 10px;
+    height: 10px;
+    border: 1px solid rgb(37, 100, 207);
+    border-radius: 50%;
+    z-index: 100;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
+.completed {
+    background: rgb(37, 100, 207);
+}
 
+.completed-name {
+    text-decoration: line-through;
+    opacity: 0.75;
+}
 
 .taskRow {
     overflow: hidden;
@@ -238,9 +261,10 @@ h3 {
     margin-top: -75px;
     padding: 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.3));
     font-size: 1rem;
+
 
 }
 
@@ -252,6 +276,7 @@ h3 {
     border-radius: 4px;
     border: 0;
     margin: 2px;
+    margin-top: 10px;
 }
 
 #delete-task {
